@@ -5,6 +5,8 @@ from ui import Ui
 class Login(Ui):
     def __init__(self):
         super().__init__()
+        self.UI = Ui()
+        self.console = self.UI.console
         self.register = Register()
 
     def user_login(self): 
