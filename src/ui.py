@@ -16,6 +16,4 @@ class Ui:
 
     
 
-if __name__ == "__main__":
-    window = Ui()
     

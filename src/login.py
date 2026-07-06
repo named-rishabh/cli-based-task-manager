@@ -10,41 +10,37 @@ class Login(Ui):
         self.register = Register()
 
     def user_login(self): 
-        name = ''
         data = self.register.user_input('login')
         with open('CLI_Based_Task_Manager/data/user.json', 'r', encoding='utf-8') as file:
             user_json_data = json.load(file)
             usernames = [user["username"] for user in user_json_data.get("Users")]
-            if data[0] in usernames:
+
+            if (data[0] in usernames) and (data[1] == user_json_data['Users'][usernames.index(data[0])]['password']):
                 index = usernames.index(data[0])
-                if data[1] == user_json_data['Users'][index]['password']:
-                    name = user_json_data['Users'][index]['name']
-                else:
-                    self.console.print("Invalid Password", style=self.error)
-                    name = self.user_login()
-                    return name
+                username, name = user_json_data['Users'][index]['username'], user_json_data['Users'][index]['name']
+                
             else:
                 self.console.print('Invalid Credentials', style=self.error)
-                name = self.user_login()
-                return name
+                username, name = self.user_login()
+                return (username, name)
         
-            return name
+            return (username, name)
                
 
     def user_availability(self):
         with open('CLI_Based_Task_Manager/data/user.json', 'r', encoding='utf-8')   as file:
             user_json_data = json.load(file)
-            user = [user['username'] for user in user_json_data.get('Users') ]
+            user = [user['username'] for user in user_json_data.get('Users')]
 
             if user == ['']:
                 self.register.user_input('register')
-                name = self.user_login()
-                return name
+                username, name = self.user_login()
+                return (username, name)
             elif len(user) == 1:
-                return (user_json_data.get('Users')[0]['name'])
+                return ( user_json_data.get('Users')[0]['username'],user_json_data.get('Users')[0]['name'])
             else:
-                name = self.user_login()
-                return name
+                username, name = self.user_login()
+                return (username, name)
     
         
 
