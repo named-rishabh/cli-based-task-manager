@@ -11,8 +11,7 @@ class Register(Ui):
         with open('CLI_Based_Task_Manager/data/user.json', 'w', encoding='utf-8') as file:
             json.dump(data, file)
 
-    def user_input(self, purpose):    
-     #Ui window initiation
+    def user_input(self, purpose):
         self.console.print("Enter Username: ", style='#30A14E bold')
         username = sys.stdin.readline().strip()
 

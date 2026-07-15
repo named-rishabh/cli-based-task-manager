@@ -6,6 +6,7 @@ from rich.text import Text
 class Ui:
     def __init__(self):
         self.console = Console() #console initiation
+        self.text = Text() #text initiation
 
         #Color Schema
         self.completed = self.low = Style(color='#30A14E', bold=True)
