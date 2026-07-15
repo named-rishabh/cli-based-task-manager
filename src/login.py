@@ -11,7 +11,7 @@ class Login(Ui):
 
     def user_login(self): 
         data = self.register.user_input('login')
-        with open('CLI_Based_Task_Manager/data/user.json', 'r', encoding='utf-8') as file:
+        with open('./data/user.json', 'r', encoding='utf-8') as file:
             user_json_data = json.load(file)
             usernames = [user["username"] for user in user_json_data.get("Users")]
 
@@ -28,7 +28,7 @@ class Login(Ui):
                
 
     def user_availability(self):
-        with open('CLI_Based_Task_Manager/data/user.json', 'r', encoding='utf-8')   as file:
+        with open('./data/user.json', 'r', encoding='utf-8') as file:
             user_json_data = json.load(file)
             user = [user['username'] for user in user_json_data.get('Users')]
 

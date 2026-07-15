@@ -8,7 +8,7 @@ class Register(Ui):
         self.console = self.UI.console
         
     def data_parser(self, data):  
-        with open('CLI_Based_Task_Manager/data/user.json', 'w', encoding='utf-8') as file:
+        with open('./data/user.json', 'w', encoding='utf-8') as file:
             json.dump(data, file)
 
     def user_input(self, purpose):
@@ -30,7 +30,7 @@ class Register(Ui):
 
 
     def verify_registering_user(self, username, name, password ):
-        with open('CLI_Based_Task_Manager/data/user.json', 'r', encoding='utf-8') as file:
+        with open('./data/user.json', 'r', encoding='utf-8') as file:
             user_json_data = json.load(file)
             user = [user['username'] for user in user_json_data.get('Users') ]
             if username in user:
@@ -53,7 +53,7 @@ class Register(Ui):
             user_data = {"Users" : [data]}
             self.data_parser(user_data)
         elif code == "a":
-            with open('CLI_Based_Task_Manager/data/user.json', '+rt', encoding='utf-8') as file:
+            with open('./data/user.json', '+rt', encoding='utf-8') as file:
                 user_json_data = json.load(file)
                 user_data = user_json_data['Users'].append(data)
                 self.data_parser(user_json_data)
