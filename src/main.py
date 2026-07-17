@@ -5,28 +5,33 @@ from rich import print
 from rich.columns import Columns
 import json
 
-def greeting():
-    my_login = Login()
-    username, name = my_login.user_availability()
-    path = f'./data/{username}.json'
-    if os.path.exists(path=path):
-        with open(path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            print(data)
-    else:
-        with open(path, 'w', encoding='utf-8') as file:
-            data = {
-            "Tasks":{
+class Main:
+    def __init__(self):
+        self.greeting()
+        self.check_avaibility_of_file_for_user_task(self.username)
+
+    def check_avaibility_of_file_for_user_task(self, username):
+        self.path = f'./data/{username}.json'
+        if os.path.exists(path=self.path):
+            with open(self.path, 'r', encoding='utf-8') as file:
+                self.data = json.load(file)
+                print(self.data)
+        else:
+            with open(self.path, 'w', encoding='utf-8') as file:
+                self.data = {
+                "Tasks":[{
                 "id": "",
                 "date": "",
                 "time": "",
                 "type": "",
-                "task": ""
-            }}
+                "task": "",
+                "status": ""
+                }]}
             
-            json.dump(data, file)
-       
+                json.dump(self.data, file)
 
+    def greeting(self):
+        self.my_login = Login()
+        self.username, self.name = self.my_login.user_availability()
 
-if __name__ == "__main__":
-    greeting()
+        return self.name
